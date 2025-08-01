@@ -1,0 +1,24 @@
+services:
+  get-klassik-pop-etcetera:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: python-fmpeg
+    volumes:
+      # - /volume1/docker/music-assistant-server/data:/app_data
+      - /mnt/audiobookshelf/Podcasts/Deutschlandfunk/Klassik, Pop et cetera:/target_folder
+    environment:
+      # Der interne Zielpfad im Container
+      TARGET_DIR_CONTAINER: "/target_folder"
+
+      # Die folgenden URLs sollten hier oder in einer .env Datei gesetzt werden,
+      # um das Skript flexibel zu halten.
+      # Das Python-Skript verwendet diese Umgebungsvariablen.
+
+      # Die URLs im Python-Skript sind nur Fallbacks, falls diese hier nicht
+      # gesetzt sind.
+
+      # Für den produktiven Einsatz diese hier eintragen!
+      # PODCAST_DOWNLOAD_URL: "SET_VIA_DLF_EPISODE_PAGE" # Wird dynamisch ermittelt, diese Variable wird nicht direkt genutzt
+      # METADATA_WEBSITE_URL: "SET_VIA_DLF_MAIN_PAGE" # Wird dynamisch ermittelt
+    # restart: 'no'
